@@ -1,121 +1,127 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
-import * as Location from 'expo-location';
+import React, { useState } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Alert, Modal, TextInput } from "react-native";
+import MapView from "react-native-maps";
 
-export default function LocationScreen({ navigation }) {
-  const [userLocation, setUserLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
+const LocationScreen = ({ navigation }) => {
+  const [manualLocation, setManualLocation] = useState("");
+  const [isModalVisible, setModalVisible] = useState(false);
 
-  // Get user's current location
-  const getLocation = async () => {
-    let { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== 'granted') {
-      setErrorMsg('Permission to access location was denied');
+  // Function to handle location submission
+  const selectManualLocation = () => {
+    if (!manualLocation.trim()) {
+      Alert.alert("Error", "Please enter a location.");
       return;
     }
-    let location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true });
-    setUserLocation(location.coords);
+    setModalVisible(false);
+    // Pass entered manual location to the MapScreen
+    navigation.navigate("LocationStack", {
+      location: manualLocation.trim(), // Passing the entered location
+    });
   };
-
-  useEffect(() => {
-    getLocation();  // Automatically get location on component mount
-  }, []);
 
   return (
     <View style={styles.container}>
-      <MapView
-        style={styles.map}
-        initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-        showsUserLocation={true}
-        userLocationAnnotationTitle="You are here"
-      >
-        {userLocation && (
-          <Marker
-            coordinate={{
-              latitude: userLocation.latitude,
-              longitude: userLocation.longitude,
-            }}
-            title="Your Location"
-          />
-        )}
-      </MapView>
-
-      <View style={styles.locationBox}>
-        <Text style={styles.title}>Where are you?</Text>
-        <Text style={styles.description}>
-          {errorMsg ? errorMsg : 'We are fetching your location...'}
-        </Text>
-        <TouchableOpacity
-          style={styles.locateButton}
-          onPress={() => navigation.navigate('LocateMeStack')} 
-        >
-          <Text style={styles.buttonText}>Locate me</Text>
-        </TouchableOpacity>
-        <Text
-          style={styles.manualSelect}
-          onPress={() => navigation.navigate('LocationStack')} 
-        >
-          Select location manually
-        </Text>
+      <View style={styles.overlay}>
+        <View style={styles.card}>
+          <Text style={styles.title}>Where are you?</Text>
+          <Text style={styles.description}>
+            Locate yourself or manually enter your location.
+          </Text>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => setModalVisible(true)}
+          >
+            <Text style={styles.buttonText}>Select Location</Text>
+          </TouchableOpacity>
+        </View>
       </View>
+
+      {/* Modal for manual location input */}
+      <Modal visible={isModalVisible} transparent={true} animationType="slide">
+        <View style={styles.modalContainer}>
+          <View style={styles.modalCard}>
+            <Text style={styles.modalTitle}>Enter Location</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Enter house, street, city."
+              value={manualLocation}
+              onChangeText={setManualLocation}
+            />
+            <TouchableOpacity
+              style={styles.modalButton}
+              onPress={selectManualLocation} // Submit the location
+            >
+              <Text style={styles.buttonText}>Submit</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => setModalVisible(false)} // Close the modal
+              style={styles.closeButton}
+            >
+              <Text style={styles.closeButtonText}>Close</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  map: {
-    ...StyleSheet.absoluteFillObject,
-  },
-  locationBox: {
-    position: 'absolute',
-    bottom:280,
-    left: 20,
-    right: 20,
-    backgroundColor: '#fff',
-    borderRadius: 10,
+  container: { flex: 1 },
+  overlay: { flex: 1, justifyContent: "center", alignItems: "center" },
+  card: {
+    backgroundColor: "rgba(255, 255, 255, 0.9)",
     padding: 20,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
-    elevation: 5,
+    borderRadius: 15,
+    alignItems: "center",
+    width: "80%",
   },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
+  title: { fontSize: 24, fontWeight: "bold", marginBottom: 10 },
+  description: { fontSize: 14, textAlign: "center", marginBottom: 20 },
+  button: {
+    backgroundColor: "#4caf50",
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    alignItems: "center",
+    width: "100%",
     marginBottom: 10,
   },
-  description: {
-    fontSize: 14,
-    color: '#888',
-    textAlign: 'center',
-    marginBottom: 20,
+  buttonText: { color: "#fff", fontSize: 16, fontWeight: "bold" },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
   },
-  locateButton: {
-    backgroundColor: '#4CAF50',
-    paddingVertical: 12,
-    paddingHorizontal: 30,
+  modalCard: {
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 10,
+    width: "80%",
+    alignItems: "center",
+  },
+  modalTitle: { fontSize: 18, fontWeight: "bold", marginBottom: 10 },
+  input: {
+    width: "100%",
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#ddd",
     borderRadius: 5,
     marginBottom: 10,
   },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
+  modalButton: {
+    backgroundColor: "#4caf50",
+    padding: 10,
+    borderRadius: 5,
+    width: "100%",
+    alignItems: "center",
+    marginBottom: 10,
   },
-  manualSelect: {
-    color: '#007BFF',
-    fontSize: 14,
-    textDecorationLine: 'underline',
+  closeButton: {
+    alignItems: "center",
   },
+  closeButtonText: { color: "#4caf50", fontSize: 14 },
 });
+
+export default LocationScreen;
