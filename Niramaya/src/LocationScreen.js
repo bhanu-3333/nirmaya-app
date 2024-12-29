@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Alert, Modal, TextInput } from "react-native";
-import MapView from "react-native-maps";
+
 
 const LocationScreen = ({ navigation }) => {
   const [manualLocation, setManualLocation] = useState("");
