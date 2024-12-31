@@ -1,107 +1,156 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation
 
+const BookingConfirmedScreen = () => {
+  const navigation = useNavigation(); // Initialize navigation object
 
-const BookingConfirmedScreen = ({navigation}) => {
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.iconContainer}>
-        <View style={styles.checkMark}>
-          <Text style={styles.checkMarkText}>✔</Text>
-        </View>
+    <View style={styles.parentView}>
+      {/* Back Icon */}
+      <TouchableOpacity 
+        style={styles.backIconContainer} 
+        onPress={() => navigation.goBack()} // Navigate back to the previous screen
+      >
+        <AntDesign name="arrowleft" size={24} color="black" />
+      </TouchableOpacity>
+
+      {/* Search Icon */}
+      <TouchableOpacity 
+        style={styles.searchIconContainer} 
+        onPress={() => navigation.navigate('SearchScreen')} // Replace 'SearchScreen' with the actual screen name you want to navigate to
+      >
+        <Ionicons name="search-outline" size={24} color="#000" />
+      </TouchableOpacity>
+
+      <View style={styles.imageContainer}>
+        <Image
+          source={require('../assets/image/bgimage.png')} 
+          style={styles.image}
+        />
       </View>
-      <Text style={styles.title}>Booking Confirmed</Text>
 
-      <TouchableOpacity style={styles.card}>
-        <Text style={styles.cardText}>
-          Book Cab to ABC Hospital at{' '}
-          <Text style={styles.linkText}>lowest price</Text>
-        </Text>
-      </TouchableOpacity>
+      {/* Booking Confirmed Heading */}
+      <Text style={styles.heading}>Booking Confirmed</Text>
+      <Text style={styles.booking1}>Booking ID: 23451</Text>
 
-      <TouchableOpacity style={styles.card}>
-        <Text style={styles.cardText}>
-          Book Hotel near ABC Hospital at{' '}
-          <Text style={styles.linkText}>lowest price</Text>
-        </Text>
-      </TouchableOpacity>
+      {/* Booking Options */}
+      <View style={styles.commonStyle}>
+        <View style={styles.textContainer}>
+          <Text style={styles.childTitle}>Book Cab to ABC Hospital at</Text>
+          <TouchableOpacity>
+            <Text style={styles.price}>lowest price</Text>
+          </TouchableOpacity>
+        </View>
+        <Ionicons name="arrow-forward-outline" size={24} color="#679400" style={styles.icon} />
+      </View>
 
-      <TouchableOpacity style={styles.card}>
-        <Text style={styles.cardText}>
-          Book Hotel near ABC Hospital at{' '}
-          <Text style={styles.linkText}>lowest price</Text>
-        </Text>
-      </TouchableOpacity>
+      <View style={styles.commonStyle}>
+        <View style={styles.textContainer}>
+          <Text style={styles.childTitle}>Book Hotel near ABC Hospital at</Text>
+          <TouchableOpacity>
+            <Text style={styles.price}>lowest price</Text>
+          </TouchableOpacity>
+        </View>
+        <Ionicons name="arrow-forward-outline" size={24} color="#679400" style={styles.icon} />
+      </View>
 
-      <TouchableOpacity  onPress={() => navigation.navigate("Home")}>
-        <Text style={styles.backText}  >Go back to home</Text>
+      <View style={styles.commonStyle}>
+        <View style={styles.textContainer}>
+          <Text style={styles.childTitle}>Book Hotel near ABC Hospital at</Text>
+          <TouchableOpacity>
+            <Text style={styles.price}>lowest price</Text>
+          </TouchableOpacity>
+        </View>
+        <Ionicons name="arrow-forward-outline" size={24} color="#679400" style={styles.icon} />
+      </View>
+
+      {/* Go Back to Home */}
+      <TouchableOpacity 
+        onPress={() => navigation.navigate('Home')} // Navigate to home screen
+      >
+        <Text style={styles.home}>Go back to home</Text>
       </TouchableOpacity>
-    </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    padding: 20,
-  },
-  iconContainer: {
-    marginTop: 50,
-    marginBottom: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  checkMark: {
-    backgroundColor: '#4CAF50',
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  checkMarkText: {
-    color: '#fff',
-    fontSize: 40,
-    fontWeight: 'bold',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginVertical: 20,
-  },
-  card: {
-    width: '100%',
-    padding: 15,
-    marginVertical: 10,
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 8,
-    flexDirection: 'row',
+  parentView: {
+    flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  cardText: {
-    fontSize: 18.57,
+  searchIconContainer: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+  },
+  backIconContainer: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
+  },
+
+  imageContainer: {
+    borderWidth: 2,
+    borderColor: '#679400',
+    borderRadius: 100,
+    width: 150,
+    height: 150,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 60,
+  },
+  image: {
+    width: 90,
+    height: 90,
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginVertical: 20,
     color: '#000',
   },
-  linkText: {
-    color: '#4CAF50',
-    fontWeight: 'bold',
-    fontSize:18.57,
+  booking1:{
+    fontSize:16,
+   }, 
+  textContainer: {
+    flexDirection: 'column',
+    flex: 1,
   },
-  backText: {
-    color: '#4CAF50',
-    marginTop: 20,
+  price: {
     fontSize: 16,
     textDecorationLine: 'underline',
+    color: '#679400',
+    marginTop: 4,
+  },
+  icon: {
+    marginRight: 10,
+  },
+  childTitle: {
+    fontSize: 16,
+    color: '#000',
+  },
+  commonStyle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderWidth: 1,
+    borderColor: '#679400',
+    borderRadius: 15,
+    padding: 10,
+    marginVertical: 10,
+    width: '90%',
+    height: 60, 
+  },
+  home: {
+    fontSize: 16,
+    textDecorationLine: 'underline',
+    color: '#000',
   },
 });
 

@@ -18,10 +18,7 @@ import LocationStack from './src/LocationStack';
 import LocateMeStack from './src/LocateMeStack';
 import LoginStack from './src/LoginStack';
 import MapCardStack from './src/MapCardStack';
-import SignupStack from './src/SignupStack'
-
-
-
+import SignupStack from './src/SignupStack';
 
 
 
@@ -95,6 +92,8 @@ const App = () => {
             
             {/*Map Card Stack */}
            <Stack.Screen name="MapCardStack" component={MapCardStack}/>
+
+
      
 
         </Stack.Navigator>

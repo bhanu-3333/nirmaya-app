@@ -18,7 +18,7 @@ const JoinScreen = ({ navigation }) => {
           New to Niramaya? <Text style={styles.link}>Join Now</Text>
         </Text>
         <Text style={styles.textsub}>
-          Already a user? <Text style={styles.link}  onPress={() => navigation.navigate('LoginStack')}>Sign In</Text>
+          Already a user? <Text style={styles.link}  onPress={() => navigation.navigate('Home')}>Sign In</Text>
         </Text>
       </View>
       <View style={styles.position}>
