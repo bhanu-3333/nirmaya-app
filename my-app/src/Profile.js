@@ -39,6 +39,24 @@ const Profile = ({ navigation }) => {
           <Text style={styles.tag}>Surgery</Text>
           <Text style={styles.tag}>Therapy</Text>
         </View>
+          <View style={styles.iconsRow}>
+                <TouchableOpacity onPress={() => navigation.navigate('AditionStack')}>
+                    <Image  style={styles.imagecontent} source={require("../assets/image/education.png")}/>
+                    <Text style={styles.icon}> Education</Text>
+                </TouchableOpacity>
+                <View>
+                  <Image  style={styles.imagecontent} source={require("../assets/image/awards.png")}/>
+                  <Text style={styles.icon}> Awards</Text>
+                </View>
+                <View>
+                   <Image  style={styles.imagecontent} source={require("../assets/image/surgeries.png")}/>
+                   <Text style={styles.icon}>Surgeries</Text>
+                </View>
+                <View>
+                  <Image  style={styles.imagecontent} source={require("../assets/image/reviews.png")}/>
+                  <Text style={styles.icon}> Reviews</Text>
+                </View>
+          </View>
 
         {/* Biography Section */}
         <View style={styles.section}>
@@ -150,6 +168,26 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     fontSize: 14,
   },
+
+  iconsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  imagecontent:{
+    height:40,
+    width:40,
+    marginTop:30,
+    marginLeft:15,
+    marginRight:15,
+  },
+  icon: {
+    fontSize: 14,
+    color: 'gray',
+    marginLeft:10,
+    marginRight:10,
+  },
+  
   section: { marginVertical: 10, marginLeft: 19 },
   sectionTitle: { fontSize: 16, fontWeight: 'bold', color: '#333' },
   text: { fontSize: 15.12, color: '#666', marginVertical: 2 },

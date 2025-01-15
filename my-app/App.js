@@ -19,13 +19,14 @@ import LocateMeStack from './src/LocateMeStack';
 import LoginStack from './src/LoginStack';
 import MapCardStack from './src/MapCardStack';
 import SignupStack from './src/SignupStack';
+import AditionStack from './src/AditionStack';
 
 
 
 const Stack = createStackNavigator();
 
 const App = () => {
-  const [currentScreen, setCurrentScreen] = useState('Onboarding');  // Starting at Onboarding
+  const [currentScreen, setCurrentScreen] = useState('Onboarding');  
 
   // Handle navigation
   const navigateToNextScreen = (screen) => {
@@ -92,6 +93,8 @@ const App = () => {
             
             {/*Map Card Stack */}
            <Stack.Screen name="MapCardStack" component={MapCardStack}/>
+            {/*Adition Stack */}
+            <Stack.Screen name="AditionStack" component={AditionStack}/>
 
 
      

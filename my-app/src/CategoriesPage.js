@@ -32,6 +32,7 @@ export default function CategoriesPage() {
         <Image source={item.image} style={styles.icon} />
       </View>
       <Text style={styles.text}>{item.name}</Text>
+
     </TouchableOpacity>
   );
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert ,ImageBackground } from 'react-native';
-import { Checkbox } from 'react-native-paper';  // Importing Checkbox from react-native-paper
-import axios from 'axios';  // Importing Axios for HTTP requests
+import { Checkbox } from 'react-native-paper'; 
+import axios from 'axios'; 
 
 const SignupScreen = ({ navigation }) => {
   const [name, setName] = useState('');
