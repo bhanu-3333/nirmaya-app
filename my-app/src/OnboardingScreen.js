@@ -25,7 +25,7 @@ const OnboardingScreen = ({ navigation }) => {
           style={styles.arrowButton}
           onPress={() => navigation.navigate('AppScreen')}
         >
-          <Text style={styles.nextText}>→</Text>
+          <Image source={require('../assets/image/Arrow.png')} style={styles.nextText} />
         </TouchableOpacity>
       </View>
     </View>
@@ -35,7 +35,7 @@ const OnboardingScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
       flex: 3 ,
-      backgroundColor: '#f5f5f5',
+      backgroundColor: '#0000001A',
       justifyContent: 'center',
       alignItems: 'center',
       padding:20,
@@ -51,13 +51,13 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       alignSelf:'center',
       width: 304,
-      height:500,
-      gap:16,
+      height:560,
+     
       position:'relative',
     },
     position:{
       position:'absolute',
-      bottom:105,
+      bottom:76,
       
     },
     flexDirection:{
@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
       fontSize: 48,
       color: 'black',
       fontFamily:'Nunito',
+      marginTop:-45,
     },
     Image: {
   width:48,
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
     },
     dot: {
       height: 8,
-      width: 8,
+      width: 10,
       borderRadius: 4,
       backgroundColor: '#CCC',
       marginHorizontal: 5,
@@ -118,14 +119,10 @@ const styles = StyleSheet.create({
       
     },
     nextText: {
-      marginTop:-21,
-      fontSize: 45,
-      color: '#FFFFFF',
-      fontWeight: 'bold',
-      
-  
-      
-   
+     height:32,
+  width:32,
+  color: '#FFFFFF',
+  marginBottom:3,
     },
   });
   

@@ -18,7 +18,7 @@ const AppScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.topRightContainer}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <Image source={require('../assets/image/Icons.png')} style={styles.arrow} />
         </TouchableOpacity>
         <Text style={styles.skip} onPress={() => navigation.navigate('Main')}>Skip</Text>
@@ -60,7 +60,7 @@ const AppScreen = ({navigation}) => {
           style={styles.arrowButton}
           onPress={() => navigation.navigate('Main')}
         >
-          <Text style={styles.nextText}>→</Text>
+         <Image source={require('../assets/image/Arrow.png')} style={styles.nextText} />
         </TouchableOpacity>
       </View>
     </View>
@@ -70,7 +70,7 @@ const AppScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 3 ,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#0000001A',
     justifyContent: 'center',
     alignItems: 'center',
     padding:20,
@@ -78,25 +78,25 @@ const styles = StyleSheet.create({
     
   },
 topRightContainer: {
-  flexDirection: 'row', // Align items in a row
-  justifyContent: 'flex-end', // Push content to the right
-  alignItems: 'center', // Align vertically
-  padding: 30, 
-  // Add padding around the content
+  display:'flex',
+  flexDirection: 'row',
+  alignItems: 'center', 
+ marginTop:-90,
+ padding:30,
+  
 },
 arrow: {
   height:32,
    width:34,
-  marginRight:250,
-  marginTop:-60,
-  
+   display:'block',
+   marginRight:255,
+   marginLeft:-10,  
 },
 skip: {
+
+  fontSize: 18,
+  color: 'black', 
   
-  fontSize: 18, // Font size for "Skip"
-  color: 'black', // Example color for "Skip"
-  marginLeft:8, // Space between arrow and "Skip"
-  marginTop:-90,
 },
   card: {
     backgroundColor:'#fff',
@@ -113,7 +113,7 @@ skip: {
   },
 position:{
   position:'absolute',
-  bottom:46,
+  bottom:75,
   
 },
 title: {
@@ -122,13 +122,14 @@ title: {
   color: '#000',
   textAlign: 'center',
   marginBottom: 10,
+  marginTop:-20,
 },
 subtitle: {
   fontSize: 24,
   fontWeight: 'bold',
   color: '#000',
   textAlign: 'center',
-  marginBottom: 30,
+  marginTop:-20,
 },
 
 
@@ -138,6 +139,7 @@ option: {
   padding: 16,
   borderRadius: 32,
   marginBottom: 15,
+  
   borderWidth: 1,
   width:288,
   borderColor: '#DADADA',
@@ -161,7 +163,7 @@ pagination: {
 },
 dot: {
   height: 8,
-  width: 8,
+  width: 10,
   borderRadius: 4,
   backgroundColor: '#CCC',
   marginHorizontal: 5,
@@ -182,10 +184,12 @@ arrowButton: {
   
 },
 nextText: {
-  marginTop:-21,
-  fontSize: 45,
+  height:32,
+  width:32,
   color: '#FFFFFF',
-  fontWeight: 'bold',
+  marginBottom:3,
+ 
+
 },
 
 });

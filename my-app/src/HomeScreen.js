@@ -1,10 +1,12 @@
-import React from 'react';
+import React ,{useState} from 'react';
 import {  ScrollView,View, Text, TextInput, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { Ionicons, FontAwesome5 } from '@expo/vector-icons'; 
 import Icon from "react-native-vector-icons/Ionicons";
 
 
+
 export default function HomeScreen({ navigation }) {
+   const [liked, setLiked] = useState(false);
   return (
     <View>
     <ScrollView style={styles.container}>
@@ -18,14 +20,14 @@ export default function HomeScreen({ navigation }) {
                 <Text style={styles.greeting}>Hi,</Text>
                 <Text style={styles.username}>Person One</Text>
               </View>
-              <TouchableOpacity style={styles.iconButton}>
-                <Ionicons name="document-text-outline" size={24} color="green" />
-              </TouchableOpacity>
+              <View style={styles.iconButton}>
+                <Image source={require('../assets/image/book.png')} style={styles.iconButtonimage}/>
+              </View>
             </View>
 
             {/* Search Bar */}
             <View style={styles.searchBar}>
-              <Ionicons name="search-outline" size={20} color="gray" style={styles.searchIcon} />
+              <Ionicons name="search-outline" size={15} color="gray" style={styles.searchIcon} />
               <TextInput placeholder="Search anything" style={styles.searchInput} />
             </View>
 
@@ -48,33 +50,52 @@ export default function HomeScreen({ navigation }) {
             {/* Categories Section */}
             <View style={styles.sectionHeader}>
               <Text style={styles.username}>Categories</Text>
-              <TouchableOpacity onPress={() => navigation.navigate("Categories")}>
-                <Text style={{ color: "green" }}>See All</Text>
+              <TouchableOpacity onPress={() => navigation.navigate("Categories")} style={styles.flexrow}>
+                <Text>See All </Text>
+                <Image source={require('../assets/image/graterthan.png')} style={styles.graterImage}/>
+                
               </TouchableOpacity>
             </View>
 
             <View style={styles.categories}>
-              {[
-                { name: 'Neurologist', icon: 'brain' },
-                { name: 'Cardiologist', icon: 'heart' },
-                { name: 'Dermatologist', icon: 'user-alt' },
-                { name: 'Dentist', icon: 'tooth' },
-              ].map((category, index) => (
-                <View key={index} style={styles.category}>
-                  <FontAwesome5 name={category.icon} size={24} color="green" />
-                  <Text style={styles.categoryText}>{category.name}</Text>
+             {[
+             { name: 'Neurologist', image: require('../assets/image/Neurology.png') },
+             { name: 'Cardiologist', image: require('../assets/image/Cardiology.png') },
+             { name: 'Dermatologist', image: require('../assets/image/Dermatologist.png') },
+             { name: 'Dentist', image: require('../assets/image/Dentist.png') },
+             ].map((category, index) => (
+              <View key={index} style={styles.category}>
+                <View style={styles.categoryImage}>
+                  <Image source={category.image} style={{ width: 30, height: 30   }} />
                 </View>
-              ))}
+                <Text style={styles.categoryText}>{category.name}</Text>
+              </View>
+             ))}
+             
             </View>
+
              
             <View style={styles.sectionHeader}>
               <Text style={styles.username} >Services</Text>
-              <TouchableOpacity onPress={() => navigation.navigate("Services")}>
-                 <Text style={{ color: "green" }}>See All</Text>
+              <TouchableOpacity onPress={() => navigation.navigate("Services")} style={styles.flexrow}>
+                <Text style={styles.seeallText}>See All </Text>
+                <Image source={require('../assets/image/graterthan.png')} style={styles.graterImage}/>
+                
               </TouchableOpacity>
 
             </View>
             <View style={styles.services}>
+
+                    <TouchableOpacity
+                              style={styles.likeButton}
+                              onPress={() => setLiked(!liked)}
+                            >
+                              <Icon
+                                 name={liked ? 'heart' : 'heart-outline'}
+                                size={32} 
+                                color="#FF0000" 
+                              />
+                            </TouchableOpacity>
               {[
                 { name: ' ⭐ ⭐ ⭐ ⭐ ⭐ Locate & Book Cabs', image: 'https://i.imgur.com/c9WVtb8.png' ,
                 icon: require('../assets/image/Group 5.png')},
@@ -129,9 +150,10 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
+    marginRight: 19,
   },
   headerText: {
-    marginLeft: 8,
+    
     flexDirection: 'row',
   },
   greeting: {
@@ -142,38 +164,67 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: 4,
   },
+  flexrow:{
+   display:'flex',
+   flexDirection:'row',
+   justifyContent:'center',
+   alignItems:'center',
+  },
+  graterImage:{
+    height:15,
+    width:10,
+  },
   iconButton: {
     marginLeft: 'auto',
+    height:65,
+    width:65,
+    borderWidth:1,
+    borderColor:'black',
+    borderRadius:50,
+    backgroundColor:'transparent',
+    justifyContent:'center',
+    alignItems:'center',
+      },
+  iconButtonimage:{
+    height:29.68,
+    width:29.68,
   },
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#f2f2f2',
-    padding: 8,
-    borderRadius: 8,
+    background:'transparent',
+    padding: 7,
+    borderRadius: 10,
     marginBottom: 16,
+    boxShadow: '0px 2px 5px 0px #00000040',
+
   },
   searchIcon: {
     marginRight: 8,
     color: 'gray',
   },
   searchInput: {
-    flex: 1,
+    flex:1,
     borderWidth: 0,
+    
   },
   banner: {
     flexDirection: 'row',
     backgroundColor: '#679400',
     padding:10,
     paddingBottom:0,
-    borderRadius: 8,
+    borderRadius: 15,
     marginBottom: 16,
   },
   sub: {
     position:'relative',
+    marginLeft:-25,
   },
   headerText:{
-    fontSize:13,
+    width:170,
+    fontSize:24,
+    fontFamily:'Duplet',
+    color:'white',
   },
   bannerImage: {
     width: 300,
@@ -184,39 +235,57 @@ const styles = StyleSheet.create({
     right:10,
     top:30,
     justifyContent: 'center',
-    position:'absolute'
+    position:'absolute',
+    
   },
   appointmentButton: {
     backgroundColor: '#fff',
     paddingVertical: 9,
     paddingHorizontal:5,
-    borderRadius: 8,
+    borderRadius: 9,
     marginTop: 8,
     textAlign: 'center',
-    fontSize:10.59,
+    fontSize:10.09,
+    fontFamily:'Montserrat',
   },
   sectionHeader: {
-    fontSize: 500,
+    fontSize: 36,
+    fontFamily:'poppins',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 16,
-    marginTop: 6,
+    marginTop: -6,
   },
   categories: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginTop:-10,
+  },
+  seeallText:{
+    fontFamily:'Duplet',
   },
   category: {
     alignItems: 'center',
+    marginBottom:20,
+  },
+  categoryImage:{
+   height:60,
+   width:60,
+   backgroundColor: '#D9D9D9', 
+   borderRadius:60,
+   justifyContent:'center',
+   alignItems:'center',
   },
   categoryText: {
-    marginTop: 8,
-    fontSize: 14,
+    marginTop: 5,
+    fontSize: 12,
+    fontFamily:'Duplet',
   },
   services: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    fontFamily:'Duplet',
   },
   service: {
     backgroundColor: '#f2f2f2',
@@ -228,6 +297,15 @@ const styles = StyleSheet.create({
   serviceImage: {
     width: '100%',
     height: 100,
+    
+  },
+  likeButton: {
+    position: 'absolute',
+    top: 10,
+    right: 10, 
+    padding: 6,
+    elevation: 3,
+    zIndex: 1, 
   },
   serviceText: {
     padding: 8,
@@ -247,12 +325,17 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     paddingVertical: 10,
+    width:370,
     backgroundColor: "#FFF",
-    borderTopWidth: 1,
-    borderTopColor: "#E0E0E0",
-    marginTop:60,
+    borderWidth: 1,
+    borderColor:'#E0E0E0',
+    borderBottomWidth:0,
+    borderRadius:20,
+
+    marginTop:35,
     flexShrink:0,
+    marginLeft:-20,
   },
   navItem: { alignItems: "center" },
-  navLabel: { fontSize: 12, color: "#333" },
+  navLabel: { fontSize: 12, color: "#333", fontFamily:'roboto' },
 });

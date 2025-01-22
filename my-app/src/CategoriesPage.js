@@ -51,7 +51,7 @@ export default function CategoriesPage() {
       <FlatList
         data={categories}
         numColumns={4} 
-        keyExtractor={(item) => item.id}  // Ensure unique key for each item
+        keyExtractor={(item) => item.id} 
         renderItem={renderCategory}
         contentContainerStyle={styles.grid}
       />

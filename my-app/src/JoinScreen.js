@@ -32,7 +32,7 @@ const JoinScreen = ({ navigation }) => {
           style={styles.arrowButton}
           onPress={() => navigation.navigate('LoginStack')}
         >
-          <Text style={styles.nextText}>→</Text>
+          <Image source={require('../assets/image/Arrow.png')} style={styles.nextText} />
         </TouchableOpacity>
       </View>
     </View>
@@ -42,32 +42,33 @@ const JoinScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 3 ,
-      backgroundColor: '#f5f5f5',
+      backgroundColor: '#0000001A',
       justifyContent: 'center',
       alignItems: 'center',
       padding:20,
-     
       fontFamily:'Nunito',
     },
-  topRightContainer: {
-    flexDirection: 'row', // Align items in a row
-    justifyContent: 'flex-end', // Push content to the right
-    alignItems: 'center', // Align vertically
-    padding: 30, // Add padding around the content
-  },
-  arrow: {
-    height:32,
+topRightContainer: {
+  display:'flex',
+  flexDirection: 'row',
+  alignItems: 'center', 
+ marginTop:-90,
+ padding:30,
+  
+},
+arrow: {
+  height:32,
    width:34,
-    marginRight:250,
-    marginTop:-60,
-  },
-  skip: {
-    
-    fontSize: 18, // Font size for "Skip"
-    color: 'black', // Example color for "Skip"
-    marginLeft:8, // Space between arrow and "Skip"
-    marginTop:-90,
-  },
+   display:'block',
+   marginRight:255,
+   marginLeft:-10,  
+},
+skip: {
+
+  fontSize: 18,
+  color: 'black', 
+  
+},
     card: {
       backgroundColor:'#fff', 
       borderRadius: 32,
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
     },
   position:{
     position:'absolute',
-    bottom:54,
+    bottom:82,
     
   },
   title: {
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
   image: {
     width: 230,
     height: 230,
-    marginBottom: 16,
+   marginTop:-120,
   },
   heading: {
     fontSize: 24,
@@ -124,7 +125,7 @@ const styles = StyleSheet.create({
   },
   dot: {
     height: 8,
-    width: 8,
+    width: 10,
     borderRadius: 4,
     backgroundColor: '#CCC',
     marginHorizontal: 5,
@@ -145,10 +146,10 @@ const styles = StyleSheet.create({
     
   },
   nextText: {
-    marginTop:-21,
-    fontSize: 45,
-    color: '#FFFFFF',
-    fontWeight: 'bold',
+    height:32,
+  width:32,
+  color: '#FFFFFF',
+  marginBottom:3,
   },
 });
 

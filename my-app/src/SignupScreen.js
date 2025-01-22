@@ -1,40 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert ,ImageBackground } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert, ImageBackground } from 'react-native';
 import { Checkbox } from 'react-native-paper'; 
-import axios from 'axios'; 
+import { CheckBox } from 'react-native-web';
 
 const SignupScreen = ({ navigation }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSelected, setSelection] = useState(false);
-
-  const handleSignup = async () => {
-    if (!name || !email || !password || !isSelected) {
-      Alert.alert("Error", "Please fill in all fields and accept the terms and conditions.");
-      return;
-    }
-
-    const userData = {
-      name,
-      email,
-      password,
-      termsAccepted: isSelected,
-    };
-
-    try {
-      const response = await axios.post('http://localhost:6000/signup', userData);
-      if (response.data.message === 'User created successfully') {
-        Alert.alert('Success', 'Account created successfully!');
-        navigation.navigate('Home'); // Navigate to Home page after signup
-      } else {
-        Alert.alert('Error', response.data.message);
-      }
-    } catch (error) {
-      Alert.alert('Error', 'There was an error creating your account. Please try again later.');
-      console.error(error);
-    }
-  };
 
   return (
     <View style={styles.container}>
@@ -43,13 +16,14 @@ const SignupScreen = ({ navigation }) => {
         <ImageBackground source={require('../assets/image/bg1.png')} style={styles.ImageBackground}></ImageBackground>
       </View>
       <View style={styles.arrow}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-         <Image source={require('../assets/image/Icons.png')} style={styles.arrow} />
-      </TouchableOpacity> 
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image source={require('../assets/image/Icons.png')} style={styles.arrow} />
+        </TouchableOpacity> 
       </View>
       <View>
         <Image source={require('../assets/image/Niramaya.png')} style={styles.logo} />
       </View>
+      
 
       {/* Name Input */}
       <Text style={styles.inputtext}>Name</Text>
@@ -84,13 +58,12 @@ const SignupScreen = ({ navigation }) => {
         <Checkbox
           status={isSelected ? 'checked' : 'unchecked'}
           onPress={() => setSelection(!isSelected)}
-          style={{ width: 8.73, height: 0.73 }}
         />
         <Text style={styles.label}>I agree to the <Text style={styles.link}>terms & policy</Text></Text>
       </View>
 
       {/* Sign Up Button */}
-      <TouchableOpacity style={styles.button} onPress={handleSignup}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
         <Text style={styles.buttonText}>Signup</Text>
       </TouchableOpacity>
 
@@ -103,7 +76,6 @@ const SignupScreen = ({ navigation }) => {
 
       {/* Social Login Buttons */}
       <View style={styles.socialButtonsContainer}>
-        
         <TouchableOpacity style={styles.socialButton} onPress={() => {}}>
           <Image source={require('../assets/image/googlelogo.png')} style={styles.icons}></Image>
           <Text style={styles.socialButtonText}>Sign in with Google</Text>
@@ -116,7 +88,7 @@ const SignupScreen = ({ navigation }) => {
 
       {/* Sign In Navigation */}
       <View>
-      <ImageBackground source={require('../assets/image/bg2.png')} style={styles.ImageBackground1}></ImageBackground>    
+        <ImageBackground source={require('../assets/image/bg2.png')} style={styles.ImageBackground1}></ImageBackground>    
       </View>
       <TouchableOpacity onPress={() => navigation.navigate('LoginStack')} style={styles.subsignInText}>
         <Text style={styles.signInText}>Have an account? <Text style={styles.changeText}> Sign In </Text></Text>
@@ -134,19 +106,18 @@ const styles = StyleSheet.create({
   ImageBackground:{
     display:'flex',
     flexDirection:'column',
-   width:435,
-   height:250,
-   position:'relative',
-   marginTop:-9,
-   marginLeft:-15,
+    width:435,
+    height:250,
+    position:'relative',
+    marginTop:-9,
+    marginLeft:-15,
   },
   
   arrow: {
-   width:42,
-   height:30,  
-  position:'absolute',
-  marginTop:20,
-  
+    width:42,
+    height:30,  
+    position:'absolute',
+    marginTop:20,
   },
   logo: {
     width: 200,  // Adjust the size of the logo
@@ -168,15 +139,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     backgroundColor: '#fff',
     fontSize:12,
-    
   },
   checkboxContainer: {
     flexDirection: 'row',
     marginBottom: 20,
     alignItems: 'center',
   },
-
-  
   label: {
     marginLeft: 8,
     fontSize:8.73,
@@ -187,10 +155,10 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#679400',
     padding: 10,
-    borderRadius: 140,
+    borderRadius: 20,
     justifyContent:'center',
     alignSelf: 'center',
-    marginBottom: 10,
+    marginBottom: 25,
     marginTop:-7,
     width:200,
   },
@@ -198,7 +166,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     textAlign:'center',
-   
   },
   orContainer: {
     flexDirection: 'row',
@@ -211,7 +178,10 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 1.5,
     backgroundColor: 'black',
-    
+  },
+  Checkbox:{
+    height:2,
+    width:8,
   },
   orText: {
     marginHorizontal: 10,
@@ -225,9 +195,8 @@ const styles = StyleSheet.create({
     marginTop:5,
   },
   socialButton: {
-    
     padding: 2,
-    borderRadius: 5,
+    borderRadius: 20,
     alignItems: 'center',
     marginHorizontal: 5,
     borderWidth: 1,
@@ -237,8 +206,8 @@ const styles = StyleSheet.create({
     width:150,
   },
   icons:{
-   width:23.8,
-   height:23.8,
+    width:23.8,
+    height:23.8,
   },
   socialButtonText: {
     color: '#000',
@@ -249,10 +218,9 @@ const styles = StyleSheet.create({
     position:'absolute',
     width:435,
     height:260,
-   marginTop:-149,
-   marginLeft:-70,
-   },
-   
+    marginTop:-149,
+    marginLeft:-70,
+  },
   signInText: {
     color: 'black',
     position:'absolute',
