@@ -61,7 +61,7 @@ const InsurancePlanScreen = ({navigation}) => {
                 <Text style={styles.logo}>HDFC ERGO</Text>
             </View>
             
-            <TouchableOpacity style={styles.bookNowButton} onPress={() => navigation.navigate('InsuranceStack')}>
+            <TouchableOpacity style={styles.bookNowButton} onPress={() => navigation.navigate('InsurancePlanStack')}>
                 <Text style={styles.bookNowText}>Book Now</Text>
             </TouchableOpacity>
        

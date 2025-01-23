@@ -20,7 +20,7 @@ const BookingConfirmedScreen = () => {
       {/* Search Icon */}
       <TouchableOpacity 
         style={styles.searchIconContainer} 
-        onPress={() => navigation.navigate('SearchScreen')} // Replace 'SearchScreen' with the actual screen name you want to navigate to
+        onPress={() => navigation.navigate('SearchScreen')} 
       >
         <Ionicons name="search-outline" size={24} color="#000" />
       </TouchableOpacity>
@@ -97,33 +97,41 @@ const styles = StyleSheet.create({
   imageContainer: {
     borderWidth: 2,
     borderColor: '#679400',
-    borderRadius: 100,
-    width: 150,
-    height: 150,
+    borderRadius: 120,
+    width:250,
+    height: 250,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 60,
+    marginTop: 70,
+    marginBottom:-40,
   },
   image: {
-    width: 90,
-    height: 90,
+    width: 200,
+    height: 200,
+    marginBottom:'0',
   },
   heading: {
-    fontSize: 24,
+    fontSize: 35,
     fontWeight: 'bold',
     textAlign: 'center',
     marginVertical: 20,
     color: '#000',
+   marginbottom:'0',
+   margintop:'10',
+    
+
   },
   booking1:{
-    fontSize:16,
+    fontSize:25,
+  
    }, 
   textContainer: {
     flexDirection: 'column',
     flex: 1,
+    
   },
   price: {
-    fontSize: 16,
+    fontSize: 20,
     textDecorationLine: 'underline',
     color: '#679400',
     marginTop: 4,
@@ -132,7 +140,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   childTitle: {
-    fontSize: 16,
+    fontSize: 20,
     color: '#000',
   },
   commonStyle: {
@@ -142,15 +150,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#679400',
     borderRadius: 15,
-    padding: 10,
-    marginVertical: 10,
+    padding:'10',
+    marginVertical: 5,
     width: '90%',
-    height: 60, 
+    height: 80, 
+    marginBottom:'0',
   },
   home: {
     fontSize: 16,
     textDecorationLine: 'underline',
     color: '#000',
+    margintop:'10',
   },
 });
 

@@ -68,18 +68,18 @@ skip: {
 },
     card: {
       backgroundColor:'#fff', 
-      borderRadius: 32,
+      borderRadius: 20,
       justifyContent: 'center',
       alignItems: 'center',
       alignSelf:'center',
       width: 320,
-      height:545,
+      height:560,
       gap:16,
       position:'relative',
     },
   position:{
     position:'absolute',
-    bottom:82,
+    bottom:76,
     
   },
   image: {

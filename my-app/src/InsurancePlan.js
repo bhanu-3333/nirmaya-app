@@ -55,7 +55,7 @@ const InsurancePlan = ({navigation}) => {
         </TouchableOpacity>
       ))}
 
-      <TouchableOpacity style={styles.submitButton} onPress={() => navigation.navigate('InsurancePlanStack')}>
+      <TouchableOpacity style={styles.submitButton} onPress={() => navigation.navigate('InsuranceStack')}>
         <Text style={styles.submitButtonText}>Submit</Text>
       </TouchableOpacity>
     </View>
@@ -75,15 +75,17 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: 16,
     backgroundColor: "#FFF",
+    marginTop:-10,
   },
   title: {
-    fontSize: 24,
+    fontSize: 38,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 20,
     textAlign: 'center',
+    
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: 26,
     color: '#555',
     marginBottom: 20,
     textAlign: 'center',
@@ -92,11 +94,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#f9f9f9',
-    borderRadius: 10,
+    borderRadius: 37.03,
     padding: 15,
     marginBottom: 10,
     borderWidth: 1,
     borderColor: '#ddd',
+    height:67.3
   },
   selectedOption: {
     borderColor: '#28a745',
@@ -119,9 +122,11 @@ const styles = StyleSheet.create({
   submitButton: {
     backgroundColor: '#28a745',
     paddingVertical: 15,
-    borderRadius: 10,
+    borderRadius: 18,  
     alignItems: 'center',
     marginTop: 20,
+    width:263,
+    marginLeft:25,
   },
   submitButtonText: {
     color: '#fff',

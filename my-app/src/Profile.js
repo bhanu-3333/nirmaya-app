@@ -33,41 +33,62 @@ const Profile = ({ navigation }) => {
         </View>
 
         {/* Tags Section */}
-        <Text style={styles.tags}>Tags</Text>
+        <Text style={styles.tags}>Tags:</Text>
         <View style={styles.tagsContainer}>
           <Text style={styles.tag}>Cardiology</Text>
           <Text style={styles.tag}>Surgery</Text>
           <Text style={styles.tag}>Therapy</Text>
         </View>
-          <View style={styles.iconsRow}>
-                <TouchableOpacity onPress={() => navigation.navigate('AditionStack')}>
-                    <Image  style={styles.imagecontent} source={require("../assets/image/education.png")}/>
-                    <Text style={styles.icon}> Education</Text>
-                </TouchableOpacity>
-                <View>
-                  <Image  style={styles.imagecontent} source={require("../assets/image/awards.png")}/>
-                  <Text style={styles.icon}> Awards</Text>
-                </View>
-                <View>
-                   <Image  style={styles.imagecontent} source={require("../assets/image/surgeries.png")}/>
-                   <Text style={styles.icon}>Surgeries</Text>
-                </View>
-                <View>
-                  <Image  style={styles.imagecontent} source={require("../assets/image/reviews.png")}/>
-                  <Text style={styles.icon}> Reviews</Text>
-                </View>
-          </View>
+          
 
         {/* Biography Section */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Biography:</Text>
+          <Text style={styles.sectionTitle}>About The Doctor:</Text>
           <Text style={styles.text}>
             A doctor's biography can include their professional experience, achievements, and areas
             of specialization. A doctor’s biography can also include personal information, such as
             their interests and hobbies.
           </Text>
-          <Text style={styles.readMore}>Read more</Text>
         </View>
+        <View style={styles.iconsRow}>
+                <TouchableOpacity onPress={() => navigation.navigate('AditionStack')} >
+                  <View style={styles.touch}>
+                    <Image style={styles.line}  source={require('../assets/image/Line28.png')}/>
+                    <Image  style={styles.imagecontent} source={require("../assets/image/education.png")}/>
+                  </View>
+                  <View style={styles.icontext}>
+                    <Text style={styles.icon}> Education</Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity >
+                  <View style={styles.touch}>
+                    <Image style={styles.linein}  source={require('../assets/image/Line28.png')}/>
+                    <Image  style={styles.imagecontent} source={require("../assets/image/awards.png")}/>
+                  </View>
+                  <View style={styles.icontext}>
+                    <Text style={styles.icon}> Awards</Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity >
+                  <View style={styles.touch}>
+                    <Image style={styles.linein}  source={require('../assets/image/Line28.png')}/>
+                    <Image  style={styles.imagecontent} source={require("../assets/image/surgeries.png")}/>
+                  </View>
+                  <View style={styles.icontext}>
+                   <Text style={styles.icon}>Surgeries</Text>
+                  </View>
+                </TouchableOpacity>
+               <TouchableOpacity >
+                  <View style={styles.touch}>
+                    <Image style={styles.linein}  source={require('../assets/image/Line28.png')}/>
+                    <Image  style={styles.imagecontent} source={require("../assets/image/reviews.png")}/>
+                    <Image style={styles.line}  source={require('../assets/image/Line28.png')}/>
+                  </View>
+                  <View style={styles.icontext}>
+                   <Text style={styles.icon}> Reviews</Text>
+                  </View>
+                </TouchableOpacity>
+          </View>
 
         {/* Working Hours Section */}
         <View style={styles.section}>
@@ -123,18 +144,18 @@ const Profile = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, // Fill the screen
-    backgroundColor: '#F8F8F8',
+    flex: 1,
+    backgroundColor: 'white',
   },
   scrollContent: {
-    paddingBottom: 100, // Provide space for the bottom navbar
+    paddingBottom: 100, 
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 16,
-    backgroundColor: '#FFF',
+    backgroundColor: 'white',
   },
   profileContainer: {
     alignItems: 'center',
@@ -147,17 +168,19 @@ const styles = StyleSheet.create({
     marginLeft: 19,
   },
   image: { width: 120, height: 120, borderRadius: 60, marginBottom: 10 },
-  name: { fontSize: 28, fontWeight: 'bold', color: '#333' },
-  specialization: { fontSize: 16.12, color: '#666' },
-  experience: { fontSize: 15.12, color: '#666', marginVertical: 5 },
+  name: { fontSize: 28, fontWeight: 'bold', color: '#333' ,fontFamily:'Poppins', },
+  specialization: { fontSize: 16.12, color: '#000000' , fontFamily:'Poppins',},
+  experience: { fontSize: 13.12, color: '#666', marginVertical: 5   , fontFamily:'Poppins',},
   experienceSub: { width: 194 },
   rating: { fontSize: 13.6, color: '#FFD700' },
-  tags: { marginLeft: 19 },
+  tags: { marginLeft: 19 ,fontSize:16,fontFamily:'Montserrat',  fontWeight: 'bold', },
   tagsContainer: {
+    display:'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+    alignSelf:'center' ,
+    alignItems:'center',
     marginTop: 5,
-    marginLeft: -5,
   },
   tag: {
     backgroundColor: 'white',
@@ -166,32 +189,57 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 16,
     marginHorizontal: 5,
-    fontSize: 14,
+    fontSize: 13,
+    width:105,
+    fontFamily:'Montserrat',
   },
 
   iconsRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 20,
+  display:'flex',
+  flexDirection:'row',
+  justifyContent:'center',
+  alignItems:'center',
+  },
+  touch:{
+  display:'flex',
+  flexDirection:'row',
+  justifyContent:'center',
+  alignItems:'center',
+  },
+  line:{
+    width:30,
+    marginHorizontal:10,
+    marginTop:30,
+    height:2,
+  },
+  linein:{
+    width:40,
+    marginHorizontal:10,
+    marginTop:30,
+    height:2,
   },
   imagecontent:{
     height:40,
     width:40,
     marginTop:30,
-    marginLeft:15,
-    marginRight:15,
+    marginLeft:-10,
+    marginRight:-10,
+  },
+  icontext:{
+    justifyContent:'space-between',
+    alignContent:'space-between',
+    alignItems:'center',
+     
   },
   icon: {
     fontSize: 14,
     color: 'gray',
-    marginLeft:10,
-    marginRight:10,
+    
   },
   
   section: { marginVertical: 10, marginLeft: 19 },
-  sectionTitle: { fontSize: 16, fontWeight: 'bold', color: '#333' },
-  text: { fontSize: 15.12, color: '#666', marginVertical: 2 },
-  readMore: { fontSize: 14, color: '#007BFF' },
+  sectionTitle: { fontSize: 16, fontWeight: 'bold', color: '#333' ,fontFamily:'Montserrat', },
+  text: { fontSize: 14.12, color: '#666', marginVertical: 2 },
   footer: { alignItems: 'center', marginTop: 2 },
   fee: { fontSize: 18, fontWeight: 'bold', marginBottom: 10, color: '#333' },
   button: {

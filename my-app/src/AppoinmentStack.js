@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import InsurancePlanScreen from './InsurancePlanScreen'
+import InsurancePlan from './InsurancePlan'
 
 
 
@@ -10,8 +10,8 @@ export default function AppoinmentStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen 
-        name="InsurancePlanScreen" 
-        component={InsurancePlanScreen} 
+        name="InsurancePlan" 
+        component={InsurancePlan} 
         options={{ headerShown: false }} 
       />
       
