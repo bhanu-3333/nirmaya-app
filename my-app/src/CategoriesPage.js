@@ -1,6 +1,6 @@
 import React from "react";
-import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
-import { Ionicons } from "@expo/vector-icons"; 
+import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
 
 const categories = [
   { id: '1', name: 'Neurologist', image: require('../assets/image/Neurology.png') },
@@ -25,14 +25,13 @@ const categories = [
   { id: '20', name: 'Dentist', image: require('../assets/image/Dentist.png') },
 ];
 
-export default function CategoriesPage() {
+export default function CategoriesPage({ navigation }) {
   const renderCategory = ({ item }) => (
     <TouchableOpacity style={styles.card}>
       <View style={styles.cardBg}>
         <Image source={item.image} style={styles.icon} />
       </View>
       <Text style={styles.text}>{item.name}</Text>
-
     </TouchableOpacity>
   );
 
@@ -42,16 +41,21 @@ export default function CategoriesPage() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.iconRow}> 
-        <TouchableWithoutFeedback onPress={handleSearchPress}>
-          <Ionicons name="search" size={24} color="#333" style={styles.iconButton} />
-        </TouchableWithoutFeedback>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Icon name="arrow-back-outline" size={24} color="#333" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleSearchPress}>
+          <Icon name="search-outline" size={24} color="#333" />
+        </TouchableOpacity>
       </View>
+
+      <Text style={styles.textca}>Categories</Text>
 
       <FlatList
         data={categories}
-        numColumns={4} 
-        keyExtractor={(item) => item.id} 
+        numColumns={4}
+        keyExtractor={(item) => item.id}
         renderItem={renderCategory}
         contentContainerStyle={styles.grid}
       />
@@ -62,18 +66,22 @@ export default function CategoriesPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "#FFF",
     paddingHorizontal: 16,
     paddingTop: 20,
   },
-  iconRow: {
+  header: {
     flexDirection: "row",
+    alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: 10,
-    paddingHorizontal: 16,
+    padding: 16,
+    backgroundColor: "#FFF",
   },
-  iconButton: {
-    padding: 8,
+  textca: {
+    fontSize: 38,
+    fontFamily: 'Poppins',
+    textAlign: 'center',
+    marginVertical: 16,
   },
   grid: {
     alignItems: "center",
@@ -87,11 +95,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cardBg: {
-    backgroundColor:'#D9D9D9',
-    borderRadius:60,
+    backgroundColor: '#D9D9D9',
+    borderRadius: 60,
     width: 60,
     height: 60,
-    justifyContent:'center',
+    justifyContent: 'center',
     alignItems: 'center',
     padding: 10,
   },
@@ -101,7 +109,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   text: {
-    fontSize: 7,
+    fontSize: 12,  
     fontWeight: "700",
     color: "black",
     textAlign: "center",

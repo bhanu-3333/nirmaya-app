@@ -108,7 +108,7 @@ const BookingAppointment = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f8f8f8",
+    backgroundColor: "#fff",
     padding:16,
   
   },
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
    
     
   },
-  profileContainer: { alignItems: 'center', marginBottom: 20 ,flexDirection:'row', marginLeft:15,marginTop:30},
+  profileContainer: { alignItems: 'center', marginBottom: 20 ,flexDirection:'row', marginTop:30 ,backgroundColor:'#fff',},
   colmns:{marginLeft:19},
   image: { width: 120, height: 120, borderRadius: 60, marginBottom: 10 },
   name: { fontSize: 28, fontWeight: 'bold', color: '#333' },
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
   confirmButton: {
     backgroundColor: "#6c9d08",
     padding: 15,
-    borderRadius: 5,
+    borderRadius: 18.58,
     alignItems: "center",
     marginVertical: 20,
   },

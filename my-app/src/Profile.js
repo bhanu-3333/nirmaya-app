@@ -93,51 +93,86 @@ const Profile = ({ navigation }) => {
         {/* Working Hours Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Working Hours:</Text>
-          <Text style={styles.text}>Mon-Fri: 8:00 am - 6:00 pm</Text>
-          <Text style={styles.text}>Sat-Sun: 9:00 am - 5:00 pm</Text>
+          <View style={styles.innertext}>
+             <Text style={styles.text}>Mon-Fri:  </Text>
+            <Text style={styles.textline}>8:00 am - 6:00 pm</Text>
+          </View> 
+          <View style={styles.innertext}>
+            <Text style={styles.text}>Sat-Sun:</Text>
+            <Text style={styles.textline}> 9:00 am - 5:00 pm</Text>
+          </View>
         </View>
 
         {/* Details Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Details:</Text>
-          <Text style={styles.text}>Hospital/Clinic: ABC Hospital</Text>
-          <Text style={styles.text}>Specialization: Cardiology</Text>
-          <Text style={styles.text}>Years of Experience: 30+ in cardio</Text>
-          <Text style={styles.text}>Phone Number: +91 00000 00000</Text>
+          <View style={styles.innertext}>
+            <Text style={styles.text}>Hospital/Clinic:</Text>
+            <Text style={styles.textline}> ABC Hospital</Text>
+          </View>
+          <View style={styles.innertext}>
+            <Text style={styles.text}>Specialization:</Text>
+            <Text style={styles.textline}> Cardiology</Text>
+          </View>
+          <View style={styles.innertext}>
+            <Text style={styles.text}>Years of Experience:</Text>
+            <Text style={styles.textline}>30+ in cardio</Text>
+          </View>
+          <View style={styles.innertext}>
+            <Text style={styles.text}>Phone Number:</Text>
+            <Text style={styles.textline}> +91 00000 00000</Text>
+          </View>
         </View>
 
         {/* Footer */}
         <View style={styles.footer}>
-          <Text style={styles.fee}>Fee: Rs. 800/-</Text>
+          <View style={styles.feese}>
+            <Text style={styles.fee}>Fee:</Text>
+            <Text style={styles.feetext}> Rs. 800/-</Text>
+          </View>
           <TouchableOpacity onPress={() => navigation.navigate('ProfileStack')} style={styles.button}>
             <Text style={styles.buttonText}>Book an appointment</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
 
-      {/* Bottom Navigation Bar */}
-      <View style={styles.navbar}>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Home')}>
-          <Icon name="home-outline" size={24} color="#333" />
-          <Text style={styles.navLabel}>Home</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('BookingStack')}>
-          <Icon name="bookmark-outline" size={24} color="#333" />
-          <Text style={styles.navLabel}>Bookings</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('MapStack')}>
-          <Icon name="map-outline" size={24} color="#333" />
-          <Text style={styles.navLabel}>Maps</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Chat')}>
-          <Icon name="chatbubble-outline" size={24} color="#333" />
-          <Text style={styles.navLabel}>Chat</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Profile')}>
-          <Icon name="person-outline" size={24} color="#333" />
-          <Text style={styles.navLabel}>Profile</Text>
-        </TouchableOpacity>
-      </View>
+       <View style={styles.navBar}>
+              <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('Home')}>
+                <Image
+                  source={require('../assets/image/house.png')}
+                  style={styles.navIcon}
+                />
+                <Text style={styles.navButtonText}>Home</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('BookingStack')}>
+                <Image
+                  source={require('../assets/image/books.png')}
+                  style={styles.navIcon}
+                />
+                <Text style={styles.navButtonText}>Bookings</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('MapStack')}>
+                <Image
+                  source={require('../assets/image/location.png')}
+                  style={styles.navIcon}
+                />
+                <Text style={styles.navButtonText}>Map</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('Chat')}>
+                <Image
+                  source={require('../assets/image/message.png')}
+                  style={styles.navIcon}
+                />
+                <Text style={styles.navButtonText}>Chat</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('Profile')}>
+                <Image
+                  source={require('../assets/image/photo.png')}
+                  style={styles.navIcon}
+                />
+                <Text style={styles.navButtonText}>Profile</Text>
+              </TouchableOpacity>
+            </View>
     </View>
   );
 };
@@ -199,6 +234,7 @@ const styles = StyleSheet.create({
   flexDirection:'row',
   justifyContent:'center',
   alignItems:'center',
+  marginTop:-30,
   },
   touch:{
   display:'flex',
@@ -226,44 +262,69 @@ const styles = StyleSheet.create({
     marginRight:-10,
   },
   icontext:{
+    display:'flex',
     justifyContent:'space-between',
     alignContent:'space-between',
     alignItems:'center',
-     
+    
   },
   icon: {
     fontSize: 14,
     color: 'gray',
-    
+    marginRight:-10,
   },
   
   section: { marginVertical: 10, marginLeft: 19 },
   sectionTitle: { fontSize: 16, fontWeight: 'bold', color: '#333' ,fontFamily:'Montserrat', },
-  text: { fontSize: 14.12, color: '#666', marginVertical: 2 },
+  innertext:{
+    display:'flex',
+    flexDirection:'row',
+    justifyContent:'space-between',
+    marginRight:15,
+  },
+  text: { fontSize: 14.12, color: '#A09E9E', marginVertical: 2,fontFamily:'Poppins', },
   footer: { alignItems: 'center', marginTop: 2 },
-  fee: { fontSize: 18, fontWeight: 'bold', marginBottom: 10, color: '#333' },
+  feese:{
+    display:'flex',
+    flexDirection:'row',
+    alignItems:'center',
+  },
+  fee: { fontSize: 18, fontWeight: 'bold', color: '#333' },
+  feetext:{
+   color:'green',
+  },
   button: {
     backgroundColor: '#4CAF50',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 5,
+    borderRadius: 18,
   },
   buttonText: { color: '#FFF', fontSize: 16, fontWeight: 'bold' },
-  navbar: {
+  navBar: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'center',
-    paddingVertical: 10,
-    backgroundColor: '#FFF',
-    borderTopWidth: 1,
-    borderTopColor: '#E0E0E0',
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
+    backgroundColor: '#fff',
+    borderTopWidth: 1,
+    borderTopColor: '#ccc',
+    paddingVertical: 10,
   },
-  navItem: { alignItems: 'center' },
-  navLabel: { fontSize: 12, color: '#333' },
+  navButton: {
+    alignItems: 'center',
+  },
+  navIcon: {
+    width: 24,
+    height: 24,
+    resizeMode: 'contain',
+  },
+  navButtonText: {
+    fontSize: 12,
+    color: '#000',
+    marginTop: 4,
+  },
 });
 
 export default Profile;

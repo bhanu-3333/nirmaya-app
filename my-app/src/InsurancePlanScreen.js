@@ -3,131 +3,171 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
   Image,
   FlatList,
+  TouchableOpacity,
 } from 'react-native';
-import Icon from "react-native-vector-icons/Ionicons";
+import Ionicons from 'react-native-vector-icons/Ionicons'; // Import Ionicons
 
-const InsurancePlanScreen = ({navigation}) => {
-  const hospitals = [
-    {
-      id: '1',
-      name: 'ABC Hospital',
-      specialty: 'Emergency/Surgery/Doctors',
-      experience: '30+ Years of experience ',
-      experience1:'in Cardiovascular surgery',
-      rating: 4.5,
-      reviews: '150+',
-    },
-    {
-      id: '2',
-      name: 'ABC Hospital',
-      specialty: 'Emergency/Surgery/Doctors',
-      experience: '30+ Years of experience in Cardiovascular surgery',
-      rating: 4.5,
-      reviews: '150+',
-    },
-    {
-      id: '3',
-      name: 'ABC Hospital',
-      specialty: 'Emergency/Surgery/Doctors',
-      experience: '30+ Years of experience in Cardiovascular surgery',
-      rating: 4.5,
-      reviews: '150+',
-    },
-  ];
+const hospitals = [
+  {
+    id: '1',
+    name: 'ABC Hospital',
+    services: 'Emergency/Surgery/Doctors',
+    experience: '30+ Years of experience in Cardiovascular surgery',
+    rating: '★★★★★',
+    reviews: '150+',
+    logos: [
+      require('../assets/image/icic.png'), 
+      require('../assets/image/hdfc.png'), 
+    ],
+  },
+  {
+    id: '2',
+    name: 'ABC Hospital',
+    services: 'Emergency/Surgery/Doctors',
+    experience: '20+ Years of experience in General Surgery',
+    rating: '★★★★☆',
+    reviews: '100+',
+    logos: [
+      require('../assets/image/icic.png'),
+      require('../assets/image/hdfc.png'),
+    ],
+  },
+  {
+    id: '3',
+    name: 'ABC Hospital',
+    services: 'Emergency/Surgery/Doctors',
+    experience: '15+ Years of experience in Pediatric Surgery',
+    rating: '★★★★☆',
+    reviews: '120+',
+    logos: [
+      require('../assets/image/icic.png'),
+      require('../assets/image/hdfc.png'),
+    ],
+  },
+  {
+    id: '4',
+    name: 'ABC Hospital',
+    services: 'Emergency/Surgery/Doctors',
+    experience: '25+ Years of experience in Neurology',
+    rating: '★★★★★',
+    reviews: '200+',
+    logos: [
+      require('../assets/image/icic.png'),
+      require('../assets/image/hdfc.png'),
+    ],
+  },
+];
 
-  const renderHospital = ({ item }) => (
-    <View style={styles.hospitalCard}>
-      
-      <View style={styles.flexDirection}>
-            <Image
-                source={require( '../assets/image/image1.png' )}
-                style={styles.hospitalImage}
-            />
-            <View style={styles.hospitalInfo}>
-                <Text style={styles.hospitalName}>{item.name}</Text>
-                <Text style={styles.hospitalSpecialty}>{item.specialty}</Text>
-                <Text style={styles.hospitalExperience}>{item.experience}</Text>
-                <Text style={styles.hospitalExperience}>{item.experience1}</Text>
-                <Text style={styles.hospitalRating}>
-                {'⭐'.repeat(Math.round(item.rating))} ({item.reviews})
-                </Text>
-            </View>
+const HospitalCard = ({ hospital, navigation }) => (
+  <View style={styles.card}>
+    <View style={styles.cardContent}>
+      <View style={styles.leftSection}>
+        {/* Replace this line with a local hospital image */}
+        <Image
+          style={styles.hospitalImage}
+          source={require('../assets/image/image1.png')} // Replace with your local image
+        />
+        <View style={styles.details}>
+          <Text style={styles.hospitalName}>{hospital.name}</Text>
+          <Text style={styles.services}>{hospital.services}</Text>
+          <Text style={styles.experience}>{hospital.experience}</Text>
+          <Text style={styles.rating}>
+            <Text style={styles.star}>★</Text>
+            <Text style={styles.star}>★</Text>
+            <Text style={styles.star}>★</Text>
+            <Text style={styles.star}>★</Text>
+            <Text style={styles.star}>★</Text>
+            <Text style={styles.reviews}> ({hospital.reviews})</Text>
+          </Text>
         </View>
-            <View style={styles.insuranceLogos}>
-                <Text style={styles.logo}>ICICI Lombard</Text>
-                <Text style={styles.logo}>HDFC ERGO</Text>
-            </View>
-            
-            <TouchableOpacity style={styles.bookNowButton} onPress={() => navigation.navigate('InsurancePlanStack')}>
-                <Text style={styles.bookNowText}>Book Now</Text>
-            </TouchableOpacity>
-       
-      <View style={styles.hospitalActions}>
-        <TouchableOpacity style={styles.actionButton}>
-          <Text style={styles.actionText}>Get Directions</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.actionButton}>
-          <Text style={styles.actionText}>Contact the place</Text>
+      </View>
+      <View style={styles.rightSection}>
+        <View style={styles.logoRow}>
+          {hospital.logos.map((logo, index) => (
+            <Image key={index} style={styles.logo} source={logo} />
+          ))}
+        </View>
+        <TouchableOpacity 
+          style={styles.bookButton} 
+          onPress={() => navigation.navigate('InsurancePlanStack')}
+        >
+          <Text style={styles.bookButtonText}>Book Now</Text>
         </TouchableOpacity>
       </View>
     </View>
-  );
+    <View style={styles.cardActions}>
+      <TouchableOpacity style={styles.actionButton}>
+        <Text style={styles.actionButtonText}>Get Directions</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.actionButton}>
+        <Text style={styles.actionButtonText}>Contact the Place</Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+);
 
+const InsurancePlanScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
+      {/* Header with Back and Search Icons */}
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Icon name="arrow-back-outline" size={24} color="#333" />
+        <TouchableOpacity style={styles.iconButton} onPress={()=> navigation.goBack() }>
+          <Ionicons name="arrow-back" size={24} color="#000" />
         </TouchableOpacity>
         <Text style={styles.title}>Insurance Plan</Text>
-        <TouchableOpacity>
-        <Icon name="search-outline" size={24} color="#333" />
+        <TouchableOpacity style={styles.iconButton}>
+          <Ionicons name="search" size={24} color="#000" />
         </TouchableOpacity>
       </View>
+
       <Text style={styles.subtitle}>
         Select Hospital according to your Insurance Plan
       </Text>
-      <View style={styles.filters}>
-        <TouchableOpacity style={styles.filterButton}>
-          <Text style={styles.filterText}>Lowest Cost</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.filterButton}>
-          <Text style={styles.filterText}>Rating</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.filterButton}>
-          <Text style={styles.filterText}>Nearest</Text>
-        </TouchableOpacity>
-      </View>
       <FlatList
         data={hospitals}
-        renderItem={renderHospital}
         keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <HospitalCard hospital={item} navigation={navigation} />}
+        contentContainerStyle={{ paddingBottom: 80 }}
       />
-       <View style={styles.navbar}>
-              <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Home')}>
-                <Icon name="home-outline" size={24} color="#333" />
-                <Text style={styles.navLabel}>Home</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('BookingStack')}>
-                <Icon name="bookmark-outline" size={24} color="#333" />
-                <Text style={styles.navLabel}>Bookings</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Maps')}>
-                <Icon name="map-outline" size={24} color="#333" />
-                <Text style={styles.navLabel}>Maps</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Chat')}>
-                <Icon name="chatbubble-outline" size={24} color="#333" />
-                <Text style={styles.navLabel}>Chat</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Profile')}>
-                <Icon name="person-outline" size={24} color="#333" />
-                <Text style={styles.navLabel}>Profile</Text>
-              </TouchableOpacity>
-            </View>
+      <View style={styles.navBar}>
+        <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('Home')}>
+          <Image
+            source={require('../assets/image/house.png')}
+            style={styles.navIcon}
+          />
+          <Text style={styles.navButtonText}>Home</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('BookingStack')}>
+          <Image
+            source={require('../assets/image/books.png')}
+            style={styles.navIcon}
+          />
+          <Text style={styles.navButtonText}>Bookings</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('MapStack')}>
+          <Image
+            source={require('../assets/image/location.png')}
+            style={styles.navIcon}
+          />
+          <Text style={styles.navButtonText}>Map</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('Chat')}>
+          <Image
+            source={require('../assets/image/message.png')}
+            style={styles.navIcon}
+          />
+          <Text style={styles.navButtonText}>Chat</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('Profile')}>
+          <Image
+            source={require('../assets/image/photo.png')}
+            style={styles.navIcon}
+          />
+          <Text style={styles.navButtonText}>Profile</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -136,129 +176,161 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    paddingTop: 60, // Add padding to push content down below the header
   },
   header: {
+    position: 'absolute', // Make header fixed at the top
+    top: 0,
+    left: 0,
+    right: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 15,
-    backgroundColor: '#f9f9f9',
+    paddingHorizontal: 16,
+    backgroundColor: '#fff',
+    zIndex: 1, // Ensure header is above other content
+    paddingTop: 10, // Add padding to prevent overlap with status bar
   },
-  backArrow: {
-    fontSize: 18,
+  iconButton: {
+    padding: 8,
   },
   title: {
-    fontSize: 20,
+    fontSize: 34,
     fontWeight: 'bold',
-  },
-  searchIcon: {
-    fontSize: 18,
+    textAlign: 'center',
+    marginTop: 50, // Fixed typo
   },
   subtitle: {
-    textAlign: 'center',
-    marginVertical: 10,
-    fontSize: 16,
+    fontSize: 15,
+    marginLeft:23,
+    marginTop:50,
+    marginBottom: 50,
+    width: '390',
+    fontWeight: 'semibold',
+    color: 'black',
   },
-  flexDirection:{
-    display:'flex',
-    flexDirection:'row',
-    justifyContent:'center',
-    alignItems:'center',
-    marginTop:4,
-   
-     },
-  filters: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    marginVertical: 10,
-  },
-  filterButton: {
+  card: {
     borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-  },
-  filterText: {
-    fontSize: 14,
-  },
-  hospitalCard: {
-    margin: 10,
-    padding: 10,
-    borderRadius: 10,
+    borderRadius: 8,
+    borderColor: '#ccc',
+    marginHorizontal: 16,
+    marginBottom: 16,
     backgroundColor: '#f9f9f9',
-    elevation: 2,
+  },
+  cardContent: {
+    flexDirection: 'row',
+    padding: 8,
+  },
+  leftSection: {
+    flex: 2,
+    flexDirection: 'row',
+  },
+  rightSection: {
+    flex: 1,
+    alignItems: 'center',
   },
   hospitalImage: {
-    width: 80,
-    height: 80,
-    borderRadius: 35,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    marginRight: 8,
   },
-  hospitalInfo: {
-    marginLeft: 10,
+  details: {
+    justifyContent: 'space-between',
   },
   hospitalName: {
+    fontSize: 16,
     fontWeight: 'bold',
-    fontSize:16,
   },
-  hospitalSpecialty: {
-    color: '#555',
-    fontSize:11,
+  services: {
+    fontSize: 11,
+    color: '#000000',
   },
-  hospitalExperience: {
-    fontSize: 12,
-    color: '#777',
-    fontSize:10,
+  experience: {
+    fontSize: 10,
+    color: '#000000',
+    width: '129',
   },
-  hospitalRating: {
-    fontSize: 12,
-    color: '#777',
+  rating: {
+    fontSize: 14,
+    color: '#000',
   },
-  insuranceLogos: {
+  reviews: {
+    color: '#666',
+  },
+  star: {
+    color: '#E2A01D', // Make stars yellow
+  },
+  logoRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 5,
+    marginBottom: 8,
   },
   logo: {
-    fontSize: 12,
-    color: '#777',
+    width: 30,
+    height: 40,
+    resizeMode: 'contain',
+    marginVertical: 5,
+    marginRight: 8,
+    marginLeft: 8,
   },
-  bookNowButton: {
-    backgroundColor: '#4CAF50',
-    borderRadius: 5,
-    padding: 10,
-    marginTop: 10,
+  bookButton: {
+    marginTop: 5,
+    backgroundColor: '#679400',
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    borderRadius: 30,
   },
-  bookNowText: {
+  bookButtonText: {
     color: '#fff',
+    fontSize: 15,
     textAlign: 'center',
   },
-  hospitalActions: {
+  cardActions: {
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    marginTop: 10,
+    justifyContent: 'space-between',
+    padding: 8,
   },
   actionButton: {
+    flex: 1,
     borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 5,
-    padding: 10,
+    borderColor: '#ccc',
+    borderRadius: 20,
+    padding: 8,
+    marginHorizontal: 8,
+    alignItems: 'center',
+    backgroundColor: '#A09E9E',
   },
-  actionText: {
-    fontSize: 12,
+  actionButtonText: {
+    fontSize: 14,
     textAlign: 'center',
+    color: 'white',
   },
-  // Bottom Navigation Styles
-  navbar: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    paddingVertical: 10,
-    backgroundColor: "#FFF",
+  navBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: '#fff',
     borderTopWidth: 1,
-    borderTopColor: "#E0E0E0",
+    borderTopColor: '#ccc',
+    paddingVertical: 10,
   },
-  navItem: { alignItems: "center" },
-  navLabel: { fontSize: 12, color: "#333" },
+  navButton: {
+    alignItems: 'center',
+  },
+  navIcon: {
+    width: 24,
+    height: 24,
+    resizeMode: 'contain',
+  },
+  navButtonText: {
+    fontSize: 12,
+    color: '#000',
+    marginTop: 4,
+  },
 });
+
 export default InsurancePlanScreen;

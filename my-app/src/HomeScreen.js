@@ -107,29 +107,43 @@ export default function HomeScreen({ navigation }) {
                 </View>
               ))}
             </View>
-              <View style={styles.navbar}>
-                    <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Home')}>
-                      <Icon name="home-outline" size={24} color="#333" />
-                      <Text style={styles.navLabel}>Home</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('BookingStack')}>
-                      <Icon name="bookmark-outline" size={24} color="#333" />
-                      <Text style={styles.navLabel}>Bookings</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('MapStack')}>
-                      <Icon name="map-outline" size={24} color="#333" />
-                      <Text style={styles.navLabel}>Maps</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Chat')}>
-                      <Icon name="chatbubble-outline" size={24} color="#333" />
-                      <Text style={styles.navLabel}>Chat</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.navItem} onPress={() => navigation.navigate('Profile')}>
-                      <Icon name="person-outline" size={24} color="#333" />
-                      <Text style={styles.navLabel}>Profile</Text>
-                    </TouchableOpacity>
-                  </View>
-   
+              <View style={styles.navBar}>
+                      <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('Home')}>
+                        <Image
+                          source={require('../assets/image/house.png')}
+                          style={styles.navIcon}
+                        />
+                        <Text style={styles.navButtonText}>Home</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('BookingStack')}>
+                        <Image
+                          source={require('../assets/image/books.png')}
+                          style={styles.navIcon}
+                        />
+                        <Text style={styles.navButtonText}>Bookings</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('MapStack')}>
+                        <Image
+                          source={require('../assets/image/location.png')}
+                          style={styles.navIcon}
+                        />
+                        <Text style={styles.navButtonText}>Map</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('Chat')}>
+                        <Image
+                          source={require('../assets/image/message.png')}
+                          style={styles.navIcon}
+                        />
+                        <Text style={styles.navButtonText}>Chat</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity style={styles.navButton} onPress={() => navigation.navigate('Profile')}>
+                        <Image
+                          source={require('../assets/image/photo.png')}
+                          style={styles.navIcon}
+                        />
+                        <Text style={styles.navButtonText}>Profile</Text>
+                      </TouchableOpacity>
+                    </View>
     </ScrollView>
     </View>
   );
@@ -292,7 +306,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     overflow: 'hidden',
     width: '48%',
-   
+   marginBottom:90,
   },
   serviceImage: {
     width: '100%',
@@ -320,21 +334,29 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: '#ccc',
   },
- navbar: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
+  navBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: '#fff',
+    borderTopWidth: 1,
+    borderTopColor: '#ccc',
     paddingVertical: 10,
-    width:370,
-    backgroundColor: "#FFF",
-    borderWidth: 1,
-    borderColor:'#E0E0E0',
-    borderBottomWidth:0,
-    borderRadius:20,
-    marginTop:35,
-    flexShrink:0,
-    marginLeft:-20,
   },
-  navItem: { alignItems: "center" },
-  navLabel: { fontSize: 12, color: "#333", fontFamily:'roboto' },
+  navButton: {
+    alignItems: 'center',
+  },
+  navIcon: {
+    width: 24,
+    height: 24,
+    resizeMode: 'contain',
+  },
+  navButtonText: {
+    fontSize: 12,
+    color: '#000',
+    marginTop: 4,
+  },
 });

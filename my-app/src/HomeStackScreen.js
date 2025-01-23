@@ -17,12 +17,12 @@ export default function HomeStackScreen() {
       <HomeStack.Screen 
         name="Categories" 
         component={CategoriesPage} 
-        options={{ title: "Categories" }}  // Title for the Categories Page
+        options={{  headerShown: false}}  // Title for the Categories Page
       />
       <HomeStack.Screen 
         name="Services" 
         component={ServicesScreen} 
-        options={{ title: "Services" }}  // Title for the Services screen
+        options={{  headerShown: false}}  // Title for the Services screen
       />
     </HomeStack.Navigator>
   );
