@@ -25,7 +25,7 @@ const OnboardingScreen = ({ navigation }) => {
           style={styles.arrowButton}
           onPress={() => navigation.navigate('AppScreen')}
         >
-          <Image source={require('../assets/image/Arrow.png')} style={styles.nextText} />
+          <Image source={require('../assets/image/arrow.png')} style={styles.nextText} />
         </TouchableOpacity>
       </View>
     </View>
